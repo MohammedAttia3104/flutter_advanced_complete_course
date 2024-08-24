@@ -16,4 +16,15 @@ class TextStyles {
     fontWeight: FontWeightHelper.bold,
     color: ColorsManager.mainBlue,
   );
+
+  static TextStyle font13GrayNormal= TextStyle(
+    fontSize: 13.sp,
+    color: ColorsManager.gray,
+  );
+
+  static TextStyle font16WhiteMedium = TextStyle(
+    fontSize: 16.sp,
+    color: Colors.white,
+    fontWeight: FontWeightHelper.medium,
+  );
 }

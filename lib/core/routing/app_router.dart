@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_complete_course/core/routing/routes.dart';
+import 'package:flutter_advanced_complete_course/features/onboarding/onboarding_screen.dart';
 
 class AppRouter {
   Route? generateRoute(RouteSettings settings) {
@@ -6,11 +8,11 @@ class AppRouter {
     final arguments = settings.arguments;
 
     switch (settings.name) {
-      /* case Routes.onBoardingScreen:
+      case Routes.onBoardingScreen:
         return MaterialPageRoute(
           builder: (_) => const OnboardingScreen(),
         );
-      case Routes.homeScreen:
+      /*case Routes.homeScreen:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
             create: (context) => HomeCubit(getIt())..getSpecializations(),
@@ -18,7 +20,13 @@ class AppRouter {
           ),
         );*/
       default:
-        return null;
+        return MaterialPageRoute(
+          builder: (_) => Scaffold(
+            body: Center(
+              child: Text('No route defined for ${settings.name}'),
+            ),
+          ),
+        );
     }
   }
 }
