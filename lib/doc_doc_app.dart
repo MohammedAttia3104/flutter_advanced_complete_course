@@ -1,19 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_complete_course/core/routing/app_router.dart';
+import 'package:flutter_advanced_complete_course/core/routing/routes.dart';
+import 'package:flutter_advanced_complete_course/core/theming/colors.dart';
 import 'package:flutter_advanced_complete_course/features/onboarding/onboarding_screen.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DocDocApp extends StatelessWidget {
-  const DocDocApp({super.key});
+  final AppRouter appRouter;
+
+  const DocDocApp({super.key, required this.appRouter});
 
   @override
   Widget build(BuildContext context) {
-    // flutter screen util
-    return  MaterialApp(
-        title: 'DocDoc',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: const OnboardingScreen(),
-    );
+    return ScreenUtilInit(
+        designSize: const Size(375, 812),
+        minTextAdapt: true,
+        child: MaterialApp(
+          title: 'DocDoc',
+          theme: ThemeData(
+            primaryColor: ColorsManager.mainBlue,
+            scaffoldBackgroundColor: Colors.white,
+          ),
+          onGenerateRoute: appRouter.generateRoute,
+          initialRoute: Routes.onBoardingScreen,
+          debugShowCheckedModeBanner: false,
+        ));
   }
 }
