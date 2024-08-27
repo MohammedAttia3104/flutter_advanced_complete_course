@@ -14,7 +14,7 @@ enum DataSource {
   INTERNAL_SERVER_ERROR,
   CONNECT_TIMEOUT,
   CANCEL,
-  RECEIVE_TIMEOUT,
+  RECIEVE_TIMEOUT,
   SEND_TIMEOUT,
   CACHE_ERROR,
   NO_INTERNET_CONNECTION,
@@ -97,7 +97,7 @@ extension DataSourceExtension on DataSource {
       case DataSource.CANCEL:
         return ApiErrorModel(
             code: ResponseCode.CANCEL, message: ResponseMessage.CANCEL);
-      case DataSource.RECEIVE_TIMEOUT:
+      case DataSource.RECIEVE_TIMEOUT:
         return ApiErrorModel(
             code: ResponseCode.RECIEVE_TIMEOUT,
             message: ResponseMessage.RECIEVE_TIMEOUT);
@@ -141,7 +141,7 @@ ApiErrorModel _handleError(DioException error) {
     case DioExceptionType.sendTimeout:
       return DataSource.SEND_TIMEOUT.getFailure();
     case DioExceptionType.receiveTimeout:
-      return DataSource.RECEIVE_TIMEOUT.getFailure();
+      return DataSource.RECIEVE_TIMEOUT.getFailure();
     case DioExceptionType.badResponse:
       if (error.response != null &&
           error.response?.statusCode != null &&
