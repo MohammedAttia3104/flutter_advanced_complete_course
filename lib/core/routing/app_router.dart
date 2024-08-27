@@ -12,12 +12,9 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => const OnboardingScreen(),
         );
-      /*case Routes.homeScreen:
+      /*case Routes.loginScreen:
         return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (context) => HomeCubit(getIt())..getSpecializations(),
-            child: const HomeScreen(),
-          ),
+          builder: (_) => const LoginScreen(),
         );*/
       default:
         return MaterialPageRoute(
