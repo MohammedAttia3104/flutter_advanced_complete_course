@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_complete_course/core/widgets/app_text_button.dart';
+import 'package:flutter_advanced_complete_course/features/login/presentation/widgets/do_not_have_account_text.dart';
 import 'package:flutter_advanced_complete_course/features/login/presentation/widgets/email_and_password.dart';
+import 'package:flutter_advanced_complete_course/features/login/presentation/widgets/terms_and_conditions_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/helpers/spacing.dart';
@@ -30,14 +33,27 @@ class LoginScreen extends StatelessWidget {
                 ),
                 verticalSpace(36),
                 const EmailAndPasswordWidget(),
-                Align(
-                  alignment: AlignmentDirectional.centerEnd,
-                  child: Text(
-                    'Forgot Password?',
-                    style: TextStyles.font13BlueRegular,
-                  ),
+                Column(
+                  children: [
+                    Align(
+                      alignment: AlignmentDirectional.centerEnd,
+                      child: Text(
+                        'Forgot Password?',
+                        style: TextStyles.font13BlueRegular,
+                      ),
+                    ),
+                    verticalSpace(40),
+                    AppTextButton(
+                      text: Strings.loginBtn,
+                      btnStyle: TextStyles.font16WhiteSemiBold,
+                      onPressed: () {},
+                    ),
+                    verticalSpace(16),
+                    const TermsAndConditionsWidget(),
+                    verticalSpace(60),
+                    const DoNotHaveAccountText(),
+                  ],
                 ),
-                verticalSpace(40),
               ],
             ),
           ),
