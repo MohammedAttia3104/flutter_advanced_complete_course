@@ -1,13 +1,11 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_advanced_complete_course/core/networking/dio_factory.dart';
+import 'package:flutter_advanced_complete_course/core/networking/api_services.dart';
 import 'package:get_it/get_it.dart';
 
-final GetIt getIt = GetIt.instance;
+final GetIt sl = GetIt.instance;
 
-Future<void> setupGetIt() async {
-  // Dio & ApiService
-  Dio dio = DioFactory.getDio();
-  // getIt.registerLazySingleton<ApiService>(() => ApiService(dio));
-
-  // Home
+void setUpGetIt() {
+  // Dio && ApiService
+  final Dio dio = Dio();
+  sl.registerLazySingleton<ApiServices>(() => ApiServices(dio));
 }

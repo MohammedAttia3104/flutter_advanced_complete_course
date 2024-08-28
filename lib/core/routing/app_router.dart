@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_complete_course/core/routing/routes.dart';
+import 'package:flutter_advanced_complete_course/features/login/presentation/screens/login_screen.dart';
 import 'package:flutter_advanced_complete_course/features/onboarding/onboarding_screen.dart';
 
 class AppRouter {
@@ -12,20 +13,18 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => const OnboardingScreen(),
         );
-      /*case Routes.homeScreen:
+      case Routes.loginScreen:
         return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (context) => HomeCubit(getIt())..getSpecializations(),
-            child: const HomeScreen(),
-          ),
-        );*/
+          builder: (_) => const LoginScreen(),
+        );
       default:
         return MaterialPageRoute(
-          builder: (_) => Scaffold(
-            body: Center(
-              child: Text('No route defined for ${settings.name}'),
-            ),
-          ),
+          builder: (_) =>
+              Scaffold(
+                body: Center(
+                  child: Text('No route defined for ${settings.name}'),
+                ),
+              ),
         );
     }
   }
