@@ -1,74 +1,105 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_complete_course/features/login/presentation/controllers/login_cubit.dart';
+import 'package:flutter_advanced_complete_course/features/login/presentation/widgets/password_validation.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/helpers/app_regex.dart';
 import '../../../../core/helpers/spacing.dart';
 import '../../../../core/theming/strings.dart';
 import '../../../../core/widgets/app_text_form_field.dart';
 
-class EmailAndPasswordWidget extends StatefulWidget {
-  const EmailAndPasswordWidget({super.key});
+class EmailAndPassword extends StatefulWidget {
+  const EmailAndPassword({super.key});
 
   @override
-  State<EmailAndPasswordWidget> createState() => _EmailAndPasswordWidgetState();
+  State<EmailAndPassword> createState() => _EmailAndPasswordState();
 }
 
-class _EmailAndPasswordWidgetState extends State<EmailAndPasswordWidget> {
-  bool _isObscure = true;
-  late TextEditingController _emailController;
-  late TextEditingController _passwordController;
+class _EmailAndPasswordState extends State<EmailAndPassword> {
+  bool isObscureText = true;
+
+  bool hasLowercase = false;
+  bool hasUppercase = false;
+  bool hasSpecialCharacters = false;
+  bool hasNumber = false;
+  bool hasMinLength = false;
+
+  late TextEditingController passwordController;
 
   @override
   void initState() {
     super.initState();
-    _emailController = TextEditingController();
-    _passwordController = TextEditingController();
+    passwordController = context.read<LoginCubit>().passwordController;
+    setupPasswordControllerListener();
   }
 
-  @override
-  void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
-    super.dispose();
+  void setupPasswordControllerListener() {
+    passwordController.addListener(() {
+      setState(() {
+        hasLowercase = AppRegex.hasLowerCase(passwordController.text);
+        hasUppercase = AppRegex.hasUpperCase(passwordController.text);
+        hasSpecialCharacters =
+            AppRegex.hasSpecialCharacter(passwordController.text);
+        hasNumber = AppRegex.hasNumber(passwordController.text);
+        hasMinLength = AppRegex.hasMinLength(passwordController.text);
+      });
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        AppTextFormField(
-          controller: _emailController,
-          hintText: Strings.emailHintText,
-          validator: (value) {
-            if (value == null ||
-                value.isEmpty ||
-                !AppRegex.isEmailValid(value)) {
-              return 'Please enter a valid email';
-            }
-          },
-        ),
-        verticalSpace(16),
-        AppTextFormField(
-          controller: _passwordController,
-          hintText: Strings.passwordHintText,
-          suffixIcon: GestureDetector(
+    return Form(
+      key: context.read<LoginCubit>().formKey,
+      child: Column(
+        children: [
+          AppTextFormField(
+            hintText: 'Email',
+            validator: (value) {
+              if (value == null ||
+                  value.isEmpty ||
+                  !AppRegex.isEmailValid(value)) {
+                return 'Please enter a valid email';
+              }
+            },
+            controller: context.read<LoginCubit>().emailController,
+          ),
+          verticalSpace(18),
+          AppTextFormField(
+            controller: context.read<LoginCubit>().passwordController,
+            hintText: 'Password',
+            isObscureText: isObscureText,
+            suffixIcon: GestureDetector(
               onTap: () {
                 setState(() {
-                  _isObscure = !_isObscure;
+                  isObscureText = !isObscureText;
                 });
               },
-              child: Icon(_isObscure
-                  ? Icons.visibility_off_outlined
-                  : Icons.visibility_outlined)),
-          isObscureText: true,
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return 'Please enter a valid password';
-            }
-          },
-        ),
-        verticalSpace(24),
-      ],
+              child: Icon(
+                isObscureText ? Icons.visibility_off : Icons.visibility,
+              ),
+            ),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter a valid password';
+              }
+            },
+          ),
+          verticalSpace(24),
+          PasswordValidations(
+            hasLowerCase: hasLowercase,
+            hasUpperCase: hasUppercase,
+            hasSpecialCharacters: hasSpecialCharacters,
+            hasNumber: hasNumber,
+            hasMinLength: hasMinLength,
+          ),
+        ],
+      ),
     );
+  }
+
+  @override
+  void dispose() {
+    passwordController.dispose();
+    super.dispose();
   }
 }

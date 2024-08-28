@@ -32,7 +32,8 @@ class LoginScreen extends StatelessWidget {
                   style: TextStyles.font14GrayRegular,
                 ),
                 verticalSpace(36),
-                const EmailAndPasswordWidget(),
+                const EmailAndPassword(),
+                verticalSpace(16),
                 Column(
                   children: [
                     Align(
@@ -42,7 +43,7 @@ class LoginScreen extends StatelessWidget {
                         style: TextStyles.font13BlueRegular,
                       ),
                     ),
-                    verticalSpace(40),
+                    verticalSpace(32),
                     AppTextButton(
                       text: Strings.loginBtn,
                       btnStyle: TextStyles.font16WhiteSemiBold,
