@@ -1,21 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_complete_course/core/theming/colors.dart';
-import 'package:flutter_advanced_complete_course/core/widgets/app_text_form_field.dart';
+import 'package:flutter_advanced_complete_course/features/login/presentation/widgets/email_and_password.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/helpers/app_regex.dart';
 import '../../../../core/helpers/spacing.dart';
 import '../../../../core/theming/strings.dart';
 import '../../../../core/theming/styles.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
-  @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,30 +29,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   style: TextStyles.font14GrayRegular,
                 ),
                 verticalSpace(36),
-                AppTextFormField(
-                  controller: TextEditingController(),
-                  hintText: Strings.emailHintText,
-                  validator: (value) {
-                    if (value == null ||
-                        value.isEmpty ||
-                        !AppRegex.isEmailValid(value)) {
-                      return 'Please enter a valid email';
-                    }
-                  },
+                const EmailAndPasswordWidget(),
+                Align(
+                  alignment: AlignmentDirectional.centerEnd,
+                  child: Text(
+                    'Forgot Password?',
+                    style: TextStyles.font13BlueRegular,
+                  ),
                 ),
-                verticalSpace(16),
-                AppTextFormField(
-                  controller: TextEditingController(),
-                  hintText: Strings.passwordHintText,
-                  suffixIcon: Icon(Icons.visibility_off_outlined),
-                  isObscureText: true,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter a valid password';
-                    }
-                  },
-                ),
-                verticalSpace(24),
+                verticalSpace(40),
               ],
             ),
           ),
