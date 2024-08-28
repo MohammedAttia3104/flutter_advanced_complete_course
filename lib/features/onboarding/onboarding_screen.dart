@@ -29,7 +29,7 @@ class OnboardingScreen extends StatelessWidget {
                       children: [
                         Text(
                           Strings.onBoardingSubSlogan,
-                          style: TextStyles.font13GrayNormal,
+                          style: TextStyles.font13GrayRegular,
                           textAlign: TextAlign.center,
                         ),
                         verticalSpace(30),
