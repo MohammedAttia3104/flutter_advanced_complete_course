@@ -1,6 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_complete_course/core/helpers/extensions.dart';
 
+import '../../../../core/routing/routes.dart';
 import '../../../../core/theming/styles.dart';
 
 class DoNotHaveAccountText extends StatelessWidget {
@@ -19,10 +21,10 @@ class DoNotHaveAccountText extends StatelessWidget {
           TextSpan(
             text: ' Sign Up',
             style: TextStyles.font13BlueSemiBold,
-           /* recognizer: TapGestureRecognizer()
+            recognizer: TapGestureRecognizer()
               ..onTap = () {
                 context.pushReplacementNamed(Routes.signUpScreen);
-              },*/
+              },
           ),
         ],
       ),

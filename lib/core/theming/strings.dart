@@ -12,4 +12,9 @@ class Strings {
   static const String loginForgotPassword = 'Forgot Password?';
   static const String loginBtn = 'Login';
   static const String loginAlreadyHaveNoAccount = 'Don\'t have an account?';
+
+  //sign up
+  static const String signUpCreateAccount = 'Create Account';
+  static const String signUpCreateAccountDescription =
+      'Sign up now and start exploring all that our app has to offer. We\'re excited to welcome you to our community!';
 }
