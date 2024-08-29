@@ -4,6 +4,8 @@ import 'package:flutter_advanced_complete_course/features/home/home_screen.dart'
 import 'package:flutter_advanced_complete_course/features/login/presentation/controllers/login_cubit.dart';
 import 'package:flutter_advanced_complete_course/features/login/presentation/screens/login_screen.dart';
 import 'package:flutter_advanced_complete_course/features/onboarding/onboarding_screen.dart';
+import 'package:flutter_advanced_complete_course/features/signup/presentation/controllers/sign_up_cubit.dart';
+import 'package:flutter_advanced_complete_course/features/signup/presentation/screens/sign_up_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../di/dependency_injection.dart';
@@ -23,6 +25,13 @@ class AppRouter {
           builder: (_) => BlocProvider<LoginCubit>(
             create: (BuildContext context) => sl<LoginCubit>(),
             child: const LoginScreen(),
+          ),
+        );
+      case Routes.signUpScreen:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider<SignUpCubit>(
+            create: (BuildContext context) => sl<SignUpCubit>(),
+            child: const SignUpScreen(),
           ),
         );
       case Routes.homeScreen:
