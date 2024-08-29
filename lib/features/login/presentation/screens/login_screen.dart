@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_complete_course/core/widgets/app_text_button.dart';
+import 'package:flutter_advanced_complete_course/features/login/presentation/controllers/login_cubit.dart';
 import 'package:flutter_advanced_complete_course/features/login/presentation/widgets/do_not_have_account_text.dart';
 import 'package:flutter_advanced_complete_course/features/login/presentation/widgets/email_and_password.dart';
+import 'package:flutter_advanced_complete_course/features/login/presentation/widgets/login_bloc_listener.dart';
 import 'package:flutter_advanced_complete_course/features/login/presentation/widgets/terms_and_conditions_widget.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/helpers/spacing.dart';
@@ -32,7 +35,11 @@ class LoginScreen extends StatelessWidget {
                   style: TextStyles.font14GrayRegular,
                 ),
                 verticalSpace(36),
-                const EmailAndPasswordWidget(),
+                Form(
+                  key: context.read<LoginCubit>().formKey,
+                  child: const EmailAndPassword(),
+                ),
+                verticalSpace(16),
                 Column(
                   children: [
                     Align(
@@ -42,16 +49,19 @@ class LoginScreen extends StatelessWidget {
                         style: TextStyles.font13BlueRegular,
                       ),
                     ),
-                    verticalSpace(40),
+                    verticalSpace(32),
                     AppTextButton(
                       text: Strings.loginBtn,
                       btnStyle: TextStyles.font16WhiteSemiBold,
-                      onPressed: () {},
+                      onPressed: () {
+                        validateAndSubmit(context);
+                      },
                     ),
                     verticalSpace(16),
                     const TermsAndConditionsWidget(),
                     verticalSpace(60),
                     const DoNotHaveAccountText(),
+                    const LoginBlocListener(),
                   ],
                 ),
               ],
@@ -60,5 +70,11 @@ class LoginScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void validateAndSubmit(BuildContext context) {
+    if (context.read<LoginCubit>().formKey.currentState!.validate()) {
+      context.read<LoginCubit>().login();
+    }
   }
 }
