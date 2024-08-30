@@ -131,10 +131,11 @@ class _SignUpFormState extends State<SignUpForm> {
               ),
             ),
             validator: (value) {
-              if (value == null ||
-                  value.isEmpty ||
-                  value != passwordController.text) {
+              if (value == null || value.isEmpty) {
                 return 'Password confirmation is required';
+              } else if (value !=
+                  context.read<SignUpCubit>().passwordController.text) {
+                return 'Passwords do not match';
               }
             },
           ),
