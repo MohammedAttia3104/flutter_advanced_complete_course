@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "67521251364",
+    "project_id": "docdoc-app-distribution-603c0",
+    "storage_bucket": "docdoc-app-distribution-603c0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:67521251364:android:207e8d2ea7673e828d30b1",
+        "android_client_info": {
+          "package_name": "com.example.flutter_advanced_complete_course"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDiN7YpKOAln_TlVHiTOF9ghSyKz5683Nw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
