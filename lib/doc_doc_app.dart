@@ -20,9 +20,11 @@ class DocDocApp extends StatelessWidget {
           theme: ThemeData(
             primaryColor: ColorsManager.mainBlue,
             scaffoldBackgroundColor: Colors.white,
+            fontFamily: 'Inter',
           ),
-          onGenerateRoute: appRouter.generateRoute,
           initialRoute: Routes.onBoardingScreen,
+          onGenerateRoute: appRouter.generateRoute,
+          navigatorObservers: [NavigatorObserver()],
           debugShowCheckedModeBanner: false,
         ));
   }

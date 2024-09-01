@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_complete_course/core/helpers/extensions.dart';
+import 'package:flutter_advanced_complete_course/core/routing/routes.dart';
 import 'package:flutter_advanced_complete_course/core/theming/colors.dart';
 import 'package:flutter_advanced_complete_course/core/theming/strings.dart';
 import 'package:flutter_advanced_complete_course/core/theming/styles.dart';
@@ -10,7 +12,7 @@ class GetStartedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: () {},
+      onPressed: () => context.pushNamed(Routes.loginScreen),
       style: ButtonStyle(
         backgroundColor: WidgetStateProperty.all(ColorsManager.mainBlue),
         minimumSize: WidgetStateProperty.all(Size(double.infinity, 48.h)),
