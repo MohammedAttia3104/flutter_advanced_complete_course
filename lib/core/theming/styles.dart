@@ -17,6 +17,7 @@ class TextStyles {
     color: ColorsManager.mainBlue,
   );
 
+
   static TextStyle font13BlueSemiBold = TextStyle(
     fontSize: 13.sp,
     fontWeight: FontWeightHelper.semiBold,
