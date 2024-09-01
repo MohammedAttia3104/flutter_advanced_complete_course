@@ -31,9 +31,10 @@ jobs:
           bundler-cache: true
           working-directory: android
 
-      - name: Add Platform to Lockfile
-        run: bundle lock --add-platform x86_64-linux
-        working-directory: android
+      # Remove this step if you've already added the platform locally
+      # - name: Add Platform to Lockfile
+      #   run: bundle lock --add-platform x86_64-linux
+      #   working-directory: android
 
       - name: Build and Distribute App
         env:
